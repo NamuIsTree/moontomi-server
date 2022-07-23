@@ -66,8 +66,18 @@ CREATE TABLE IF NOT EXISTS `lecture_comment` (
     `best1` INT NOT NULL,
     `best2` INT NOT NULL,
     `best3` INT NOT NULL,
-    `comment` VARCHAR(2000) NOT NULL
+    `comment` VARCHAR(2000) NOT NULL,
     PRIMARY KEY (lecture_comment_id)
+)
+  ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `genre` (
+    `genre_id` INT NOT NULL AUTO_INCREMENT,
+    `category` VARCHAR(30) NOT NULL,
+    `name` VARCHAR(30) NOT NULL,
+    PRIMARY KEY (genre_id)
 )
   ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4
