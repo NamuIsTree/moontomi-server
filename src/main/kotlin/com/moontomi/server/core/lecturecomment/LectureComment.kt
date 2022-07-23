@@ -17,22 +17,13 @@ class LectureComment (
     @Column(name = "rating")
     val rating: Int,
 
-    @JoinColumns(
-        JoinColumn(name = "lecture_id", referencedColumnName = "lecture_id"),
-        JoinColumn(name = "best1", referencedColumnName = "track_id")
-    )
-    val best1: Track,
+    @Column
+    val best1: Int,
 
-    @JoinColumns(
-        JoinColumn(name = "lecture_id", referencedColumnName = "lecture_id"),
-        JoinColumn(name = "best2", referencedColumnName = "track_id")
-    )
+    @Column
     val best2: Int,
 
-    @JoinColumns(
-        JoinColumn(name = "lecture_id", referencedColumnName = "lecture_id"),
-        JoinColumn(name = "best3", referencedColumnName = "track_id")
-    )
+    @Column
     val best3: Int,
 
     @Column(name = "comment")

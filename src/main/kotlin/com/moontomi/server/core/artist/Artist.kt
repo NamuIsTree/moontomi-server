@@ -1,20 +1,18 @@
 package com.moontomi.server.core.artist
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "artist")
 class Artist (
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "artist_id")
-    val id: Int,
+    var id: Int?,
 
     @Column(name = "name")
-    val name: String,
+    var name: String,
 
     @Column(name = "nation")
-    val nation: String
+    var nation: String
 )
