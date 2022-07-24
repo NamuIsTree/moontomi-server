@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class AlbumService {
-    fun findById(id: Long) {
+    fun findById(id: Int) {
     }
 
     fun insert() {

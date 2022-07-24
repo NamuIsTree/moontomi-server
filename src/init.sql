@@ -2,18 +2,9 @@ CREATE TABLE IF NOT EXISTS `album` (
     `album_id` INT NOT NULL AUTO_INCREMENT,
     `artist_id` INT NOT NULL,
     `image_id` INT,
+    `tracks` JSON NOT NULL,
     `release` DATETIME NOT NULL,
     PRIMARY KEY (album_id)
-)
-  ENGINE=InnoDB
-  DEFAULT CHARSET=utf8mb4
-  COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE IF NOT EXISTS `track` (
-    `album_id` INT NOT NULL,
-    `track_num` INT NOT NULL,
-    `name` VARCHAR(255) NOT NULL,
-    PRIMARY KEY (album_id, track_num)
 )
   ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4
