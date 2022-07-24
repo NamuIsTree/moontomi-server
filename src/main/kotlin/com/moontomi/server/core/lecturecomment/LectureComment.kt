@@ -1,7 +1,5 @@
 package com.moontomi.server.core.lecturecomment
 
-import com.moontomi.server.core.lecture.Lecture
-import com.moontomi.server.core.track.Track
 import javax.persistence.*
 
 @Entity

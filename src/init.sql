@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `season` (
 
 CREATE TABLE IF NOT EXISTS `image` (
     `image_id` INT NOT NULL AUTO_INCREMENT,
-    `image` BLOB NOT NULL,
+    `data` BLOB NOT NULL,
     PRIMARY KEY (image_id)
 )
   ENGINE=InnoDB

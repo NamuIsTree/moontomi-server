@@ -1,19 +1,16 @@
 package com.moontomi.server.core.image
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Lob
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "image")
 class Image (
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
-    val id: Int,
+    val id: Int?,
 
     @Lob
     @Column(name = "image")
-    val image: ByteArray
+    val data: ByteArray
 )
