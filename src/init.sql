@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS `album` (
     `album_id` INT NOT NULL AUTO_INCREMENT,
     `artist_id` INT NOT NULL,
+    `genre_id` INT NOT NULL,
     `image_id` INT,
     `tracks` JSON NOT NULL,
     `release` DATETIME NOT NULL,

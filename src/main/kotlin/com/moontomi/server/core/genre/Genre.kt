@@ -1,16 +1,14 @@
 package com.moontomi.server.core.genre
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "genre")
 class Genre (
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id")
-    var id: Int,
+    var id: Int?,
 
     @Column(name = "category")
     var category: GenreCategory,

@@ -3,6 +3,7 @@ package com.moontomi.server.core.album
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.moontomi.server.core.artist.Artist
+import com.moontomi.server.core.genre.Genre
 import com.moontomi.server.core.image.Image
 import java.io.IOException
 import java.time.LocalDateTime
@@ -22,6 +23,10 @@ class Album (
     @JoinColumn(name = "image_id")
     @OneToOne(fetch = FetchType.EAGER)
     val image: Image,
+
+    @JoinColumn(name = "genre_id")
+    @OneToMany(fetch = FetchType.EAGER)
+    val genre: Genre,
 
     @Convert(converter = TracksConverter::class)
     @Column(columnDefinition = "json")
