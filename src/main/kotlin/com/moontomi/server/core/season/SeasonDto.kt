@@ -4,26 +4,28 @@ import com.moontomi.server.core.image.ImageCreationRequest
 import com.moontomi.server.core.image.ImageDto
 
 data class SeasonDto (
-    val id: Int,
     val name: String,
-    val image: ImageDto
+    val imageId: Int
 ) {
     companion object {
         fun from(season: Season): SeasonDto = SeasonDto (
-            id = season.id!!,
             name = season.name,
-            image = ImageDto.from(season.image)
+            imageId = season.imageId
         )
     }
+
+    fun to(): Season = Season(
+        name = name,
+        imageId = imageId
+    )
 }
 
 data class SeasonCreationRequest (
     val name: String,
-    val image: ImageCreationRequest
+    val imageId: Int
 ) {
     fun to(): Season = Season(
-        id = null,
         name = name,
-        image = image.to()
+        imageId = imageId
     )
 }

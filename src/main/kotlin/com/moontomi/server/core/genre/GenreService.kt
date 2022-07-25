@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service
 class GenreService (
     private val genreRepository: GenreRepository
 ) {
+    fun findAll(): List<GenreDto> {
+        return genreRepository.findAll().map { GenreDto.from(it) }
+    }
+
     fun findById(id: Int): GenreDto {
         return GenreDto.from(
             genreRepository.findByIdOrNull(id) ?: throw Exception("genreId=$id does not exist.")

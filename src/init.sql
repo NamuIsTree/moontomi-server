@@ -1,8 +1,9 @@
 CREATE TABLE IF NOT EXISTS `album` (
     `album_id` INT NOT NULL AUTO_INCREMENT,
     `artist_id` INT NOT NULL,
-    `genre_id` INT NOT NULL,
-    `image_id` INT,
+    `image_id` INT NOT NULL,
+    `season` VARCHAR(50) NOT NULL,
+    `genres` JSON NOT NULL,
     `tracks` JSON NOT NULL,
     `release` DATETIME NOT NULL,
     PRIMARY KEY (album_id)
@@ -33,9 +34,9 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `season` (
-    `season_id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    PRIMARY KEY (season_id)
+    `image_id` INT NOT NULL,
+    PRIMARY KEY (name)
 )
   ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4

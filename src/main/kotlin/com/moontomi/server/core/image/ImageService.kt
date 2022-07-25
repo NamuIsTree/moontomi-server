@@ -13,6 +13,10 @@ class ImageService (
         )
     }
 
+    fun existsById(id: Int): Boolean {
+        return imageRepository.existsById(id)
+    }
+
     fun insert(request: ImageCreationRequest): ImageDto {
         return ImageDto.from(
             imageRepository.save(request.to())

@@ -3,8 +3,9 @@ package com.moontomi.server.core.album
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.moontomi.server.core.artist.Artist
-import com.moontomi.server.core.genre.Genre
-import com.moontomi.server.core.image.Image
+import com.moontomi.server.core.common.IntListConverter
+import com.moontomi.server.core.common.StringListConverter
+import com.moontomi.server.core.genre.GenreListConverter
 import java.io.IOException
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -13,50 +14,28 @@ import javax.persistence.*
 @Table(name = "album")
 class Album (
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "album_id")
-    val id: Int,
+    val id: Int?,
 
     @JoinColumn(name = "artist_id")
     @OneToOne(fetch = FetchType.EAGER)
     val artist: Artist,
 
-    @JoinColumn(name = "image_id")
-    @OneToOne(fetch = FetchType.EAGER)
-    val image: Image,
+    @Column(name = "image_id")
+    val imageId: Int,
 
-    @JoinColumn(name = "genre_id")
-    @OneToMany(fetch = FetchType.EAGER)
-    val genre: Genre,
+    @Column(name = "season")
+    val season: String,
 
-    @Convert(converter = TracksConverter::class)
+    @Convert(converter = IntListConverter::class)
     @Column(columnDefinition = "json")
-    val tracks: Tracks,
+    val genres: List<Int>,
+
+    @Convert(converter = StringListConverter::class)
+    @Column(columnDefinition = "json")
+    val tracks: List<String>,
 
     @Column
     val release: LocalDateTime
 )
-
-data class Tracks(
-    val list: List<String>
-)
-
-@Converter
-class TracksConverter(
-    private val mapper: ObjectMapper
-): AttributeConverter<Tracks, String> {
-    override fun convertToDatabaseColumn(attribute: Tracks?): String {
-        try {
-            return mapper.writeValueAsString(attribute)
-        } catch (ex: JsonProcessingException) {
-            throw IllegalArgumentException("failed to convert $attribute.")
-        }
-    }
-
-    override fun convertToEntityAttribute(dbData: String?): Tracks {
-        try {
-            return mapper.readValue(dbData, Tracks::class.java)
-        } catch (ex: IOException) {
-            throw IllegalArgumentException("failed to convert $dbData")
-        }
-    }
-}
