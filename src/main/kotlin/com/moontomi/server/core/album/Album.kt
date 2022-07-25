@@ -1,12 +1,8 @@
 package com.moontomi.server.core.album
 
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.moontomi.server.core.artist.Artist
 import com.moontomi.server.core.common.IntListConverter
 import com.moontomi.server.core.common.StringListConverter
-import com.moontomi.server.core.genre.GenreListConverter
-import java.io.IOException
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -24,9 +20,6 @@ class Album (
 
     @Column(name = "image_id")
     val imageId: Int,
-
-    @Column(name = "season")
-    val season: String,
 
     @Convert(converter = IntListConverter::class)
     @Column(columnDefinition = "json")

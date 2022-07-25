@@ -1,5 +1,6 @@
 package com.moontomi.server.api.meta
 
+import com.moontomi.server.core.album.AlbumService
 import com.moontomi.server.core.image.ImageCreationRequest
 import com.moontomi.server.core.image.ImageDto
 import com.moontomi.server.core.image.ImageService
@@ -15,17 +16,9 @@ import org.springframework.web.multipart.MultipartFile
 @RestController
 class ImageController(
     private val imageService: ImageService,
-    private val seasonService: SeasonService
+    private val seasonService: SeasonService,
+    private val albumService: AlbumService
 ) : AbstractMetaController() {
-    @GetMapping(
-        value = ["/image/{imageId}.v1"],
-        produces = [MediaType.IMAGE_JPEG_VALUE]
-    )
-    fun getImage(@PathVariable imageId: Int): ByteArray {
-        val image = imageService.findById(imageId)
-        return image.data
-    }
-
     @GetMapping(
         value = ["/image/season/{seasonName}.v1"],
         produces = [MediaType.IMAGE_JPEG_VALUE]
@@ -33,6 +26,15 @@ class ImageController(
     fun getSeasonImage(@PathVariable seasonName: String): ByteArray {
         val season = seasonService.findById(seasonName)
         return imageService.findById(season.imageId).data
+    }
+
+    @GetMapping(
+        value = ["/image/album/{albumId}.v1"],
+        produces = [MediaType.IMAGE_JPEG_VALUE]
+    )
+    fun getAlbumImage(@PathVariable albumId: Int): ByteArray {
+        val album = albumService.findById(albumId)
+        return imageService.findById(album.imageId).data
     }
 
     @PostMapping("/image.v1")

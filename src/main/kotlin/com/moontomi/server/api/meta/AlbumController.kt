@@ -16,6 +16,11 @@ import java.time.LocalDateTime
 class AlbumController(
     private val albumService: AlbumService
 ) : AbstractMetaController() {
+    @GetMapping("/albums.v1")
+    fun getAlbums(): List<AlbumDto> {
+        return albumService.findAll()
+    }
+
     @GetMapping("/album/{albumId}.v1")
     fun getAlbum(@PathVariable albumId: Int): AlbumDto {
         return albumService.findById(albumId)
@@ -35,7 +40,6 @@ class AlbumController(
 data class AlbumChangeRequest(
     val artistId: Int?,
     val image: MultipartFile?,
-    val season: String,
     val genres: List<Int>?,
     val tracks: List<String>?,
     val release: LocalDateTime?

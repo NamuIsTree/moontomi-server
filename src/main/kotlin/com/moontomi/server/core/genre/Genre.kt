@@ -13,6 +13,7 @@ class Genre (
     @Column(name = "genre_id")
     var id: Int?,
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "category")
     var category: GenreCategory,
 
