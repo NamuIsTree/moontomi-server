@@ -20,7 +20,7 @@ class SeasonService (
     }
 
     fun insert(request: SeasonCreationRequest): SeasonDto {
-        if (imageService.existsById(request.imageId)) {
+        if (!imageService.existsById(request.imageId)) {
             throw Exception("imageId=${request.imageId} does not exist.")
         }
 
