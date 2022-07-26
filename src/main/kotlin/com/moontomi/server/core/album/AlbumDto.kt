@@ -25,12 +25,12 @@ data class AlbumDto (
         )
     }
 
-    fun to(genres: List<GenreDto>): Album = Album(
+    fun to(): Album = Album(
         id = id,
         title = title,
         artist = artist.to(),
         imageId = imageId,
-        genres = genres.map { it.id},
+        genres = genres.map { it.id },
         tracks = tracks,
         release = release
     )

@@ -9,8 +9,9 @@ import javax.persistence.*
 @Table(name = "lecture")
 class Lecture (
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lecture_id")
-    val id: Int,
+    val id: Int?,
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "album_id")
