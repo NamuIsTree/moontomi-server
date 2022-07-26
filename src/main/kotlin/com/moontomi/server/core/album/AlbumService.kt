@@ -56,7 +56,7 @@ class AlbumService(
         }
 
         return AlbumDto.from(
-            album = albumRepository.save(album.to(album.genres)),
+            album = albumRepository.save(album.to()),
             genres = album.genres
         )
     }
