@@ -12,13 +12,13 @@ data class LectureDto (
     val ymd: LocalDateTime
 ) {
     companion object {
-        fun from(lecture: Lecture, genres: List<GenreDto>): LectureDto = LectureDto(
+        fun from(lecture: Lecture, genres: List<GenreDto>, season: SeasonDto): LectureDto = LectureDto(
             id = lecture.id!!,
             album = AlbumDto.from(
                 album = lecture.album,
                 genres = genres
             ),
-            season = SeasonDto.from(lecture.season),
+            season = season,
             ymd = lecture.ymd
         )
     }
@@ -26,7 +26,7 @@ data class LectureDto (
     fun to(): Lecture = Lecture(
         id = id,
         album = album.to(),
-        season = season.to(),
+        season = season.name,
         ymd = ymd
     )
 }

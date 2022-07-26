@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `moontomi`.`artist` (
 CREATE TABLE IF NOT EXISTS `moontomi`.`lecture` (
     `lecture_id` INT NOT NULL AUTO_INCREMENT,
     `album_id` INT NOT NULL,
-    `season_id` INT NOT NULL,
+    `season` VARCHAR(50) NOT NULL,
     `ymd` DATETIME NOT NULL,
     PRIMARY KEY (lecture_id)
 )

@@ -19,7 +19,9 @@ class LectureService (
             val genres = it.album.genres.map { genre ->
                 genreService.findById(genre)
             }
-            LectureDto.from(it, genres)
+            val season = seasonService.findById(it.season)
+
+            LectureDto.from(it, genres, season)
         }
     }
 
@@ -28,10 +30,12 @@ class LectureService (
         val genres = lecture.album.genres.map {
             genreService.findById(it)
         }
+        val season = seasonService.findById(lecture.season)
 
         return LectureDto.from(
             lecture = lecture,
-            genres = genres
+            genres = genres,
+            season = season
         )
     }
 
@@ -43,14 +47,15 @@ class LectureService (
             Lecture(
                 id = null,
                 album = albumService.findById(request.albumId).to(),
-                season = seasonService.findById(request.season).to(),
+                season = request.season,
                 ymd = request.ymd
             )
         )
 
         return LectureDto.from(
             lecture = lecture,
-            genres = genres.map { GenreDto.from(it) }
+            genres = genres.map { GenreDto.from(it) },
+            season = seasonService.findById(lecture.season)
         )
     }
 

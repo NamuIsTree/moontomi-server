@@ -17,9 +17,8 @@ class Lecture (
     @JoinColumn(name = "album_id")
     val album: Album,
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "season_id")
-    val season: Season,
+    @Column(name = "season")
+    val season: String,
 
     @Column(name = "ymd")
     val ymd: LocalDateTime
