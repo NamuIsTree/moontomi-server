@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 
 data class AlbumDto (
     val id: Int,
+    val title: String,
     val artist: ArtistDto,
     val imageId: Int,
     val genres: List<GenreDto>,
@@ -15,6 +16,7 @@ data class AlbumDto (
     companion object {
         fun from(album: Album, genres: List<GenreDto>): AlbumDto = AlbumDto(
             id = album.id!!,
+            title = album.title,
             artist = ArtistDto.from(album.artist),
             imageId = album.imageId,
             genres = genres,
@@ -25,6 +27,7 @@ data class AlbumDto (
 
     fun to(genres: List<GenreDto>): Album = Album(
         id = id,
+        title = title,
         artist = artist.to(),
         imageId = imageId,
         genres = genres.map { it.id},
@@ -34,6 +37,7 @@ data class AlbumDto (
 }
 
 data class AlbumCreationRequest (
+    val title: String,
     val artistId: Int,
     val imageId: Int,
     val genreIds: List<Int>,
@@ -42,6 +46,7 @@ data class AlbumCreationRequest (
 ) {
     fun to(artist: ArtistDto, genres: List<GenreDto>): Album = Album(
         id = null,
+        title = title,
         artist = artist.to(),
         imageId = imageId,
         genres = genres.map { it.id },

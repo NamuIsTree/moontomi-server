@@ -14,6 +14,9 @@ class Album (
     @Column(name = "album_id")
     val id: Int?,
 
+    @Column(name = "title")
+    val title: String,
+
     @JoinColumn(name = "artist_id")
     @OneToOne(fetch = FetchType.EAGER)
     val artist: Artist,

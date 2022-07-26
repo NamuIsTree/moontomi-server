@@ -1,5 +1,6 @@
-CREATE TABLE IF NOT EXISTS `album` (
+CREATE TABLE IF NOT EXISTS `moontomi`.`album` (
     `album_id` INT NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(250) NOT NULL,
     `artist_id` INT NOT NULL,
     `image_id` INT NOT NULL,
     `genres` JSON NOT NULL,
@@ -11,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `album` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `artist` (
+CREATE TABLE IF NOT EXISTS `moontomi`.`artist` (
     `artist_id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `nation` VARCHAR(30) NOT NULL,
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `artist` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `lecture` (
+CREATE TABLE IF NOT EXISTS `moontomi`.`lecture` (
     `lecture_id` INT NOT NULL AUTO_INCREMENT,
     `album_id` INT NOT NULL,
     `season_id` INT NOT NULL,
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `season` (
+CREATE TABLE IF NOT EXISTS `moontomi`.`season` (
     `name` VARCHAR(50) NOT NULL,
     `image_id` INT NOT NULL,
     PRIMARY KEY (name)
@@ -41,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `season` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `image` (
+CREATE TABLE IF NOT EXISTS `moontomi`.`image` (
     `image_id` INT NOT NULL AUTO_INCREMENT,
     `data` BLOB NOT NULL,
     PRIMARY KEY (image_id)
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `lecture_comment` (
+CREATE TABLE IF NOT EXISTS `moontomi`.`lecture_comment` (
     `lecture_comment_id` INT NOT NULL AUTO_INCREMENT,
     `lecture_id` INT NOT NULL,
     `user_name` VARCHAR(100) NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `lecture_comment` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `genre` (
+CREATE TABLE IF NOT EXISTS `moontomi`.`genre` (
     `genre_id` INT NOT NULL AUTO_INCREMENT,
     `category` VARCHAR(30) NOT NULL,
     `name` VARCHAR(30) NOT NULL,
